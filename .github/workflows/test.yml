@@ -13,5 +13,9 @@ jobs:
       - name: Test
         shell: bash {0}
         env:
-            IS_MERGED: ${{ github.event.pull_request.merged }}
-        run: echo $IS_MERGED
+          IS_MERGED: ${{ github.event.pull_request.merged }}
+        run: |
+          if [[ $IS_MERGED == true ]]
+          then
+            echo would cherry pick
+          fi
