@@ -9,3 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: hmarr/debug-action@v2
+
+      - name: Test
+        shell: bash {0}
+        env:
+            IS_MERGED: ${{ github.event.pull_request.merged }}
+        run: echo $IS_MERGED
