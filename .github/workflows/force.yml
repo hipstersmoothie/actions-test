@@ -1,0 +1,14 @@
+name: update-beta
+
+on:
+    schedule:
+        # Every Friday at 2PM 
+        # (Actions run on UTC time which is 7 hours ahead of PST)
+        - cron: '3 * * * *'
+
+jobs:
+    install:
+        runs-on: ubuntu-18.04
+        steps:
+            - uses: actions/checkout@v2
+            - run: git push -f origin/beta staging
