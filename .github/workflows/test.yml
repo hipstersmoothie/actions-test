@@ -7,7 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
+      - name: Prepare repository
+        run: |
+            git fetch --unshallow;
+                  
       - name: Test
         run: |
           git log;
