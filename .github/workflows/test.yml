@@ -1,21 +1,14 @@
 name: pr-stopship
 
-on:
-  pull_request:
-    types: [labeled, synchronize]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: hmarr/debug-action@v2
-
+      - uses: actions/checkout@v2
+      
       - name: Test
-        shell: bash {0}
-        env:
-          IS_MERGED: ${{ github.event.pull_request.merged }}
         run: |
-          if [[ $IS_MERGED == true ]]
-          then
-            echo would cherry pick
-          fi
+          git log;
+          git tag;
