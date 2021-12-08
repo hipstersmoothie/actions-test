@@ -7,12 +7,14 @@ on:
         description: "New Version"
         required: true
       cutProduction:
-        description: "By default only a beta release is cut, selecting this checkbox will also cut the production release."
+        description: "Cut Production (By default only a beta release is cut, selecting this checkbox will also cut the production release)"
         type: boolean
+        default: false
 
 jobs:
   cut_release:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - run: echo here
+      - uses: actions/checkout@v2
+      - run: node test.js ${{ github.event.inputs.cutProduction }}
