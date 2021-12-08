@@ -1,0 +1,18 @@
+name: Cut Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      newVersion:
+        description: "New Version"
+        required: true
+      cutProduction:
+        description: "By default only a beta release is cut, selecting this checkbox will also cut the production release."
+        type: boolean
+
+jobs:
+  cut_release:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - run: echo here
