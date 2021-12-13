@@ -10,8 +10,18 @@ jobs:
         with:
             fetch-depth: 0
 
+      - name: Set new version
+        id: bump-version
+        run: exit 1
+
+      - name: Disable "include administrators" on prod/candidate
+        uses: benjefferies/branch-protection-bot@1.0.7
+        if: always()
+        continue-on-error: true
+        with:
+            access_token: ${{ secrets.GH_TOKEN }}
+            branch: prod/candidate
                   
       - name: Test
-        run: |
-          git log;
-          git tag;
+        if: steps.bump-version.outputs.exit_code == 0
+        run: echo I ran
